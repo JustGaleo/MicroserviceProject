@@ -7,11 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="funkos")
@@ -31,9 +34,17 @@ public class Funko {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createAt;
 	
+	@Lob
+	@JsonIgnore
+	private byte[] picture;
+	
 	@PrePersist
 	public void prepersist() {
 		this.createAt = new Date();
+	}
+	
+	public Integer getPictureHashCode() {
+		return (this.picture != null) ? this.picture.hashCode(): null;
 	}
 	
 	public Long getId() {
@@ -67,6 +78,15 @@ public class Funko {
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
+	
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 

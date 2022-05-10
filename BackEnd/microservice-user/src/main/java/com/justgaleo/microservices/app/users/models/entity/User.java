@@ -39,6 +39,9 @@ public class User {
 	@NotEmpty
 	private String email;
 	
+	@NotEmpty
+	private String password;
+	
 	@Column(name = "create_at")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createAt;
@@ -82,6 +85,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public List<Funko> getFunkos() {

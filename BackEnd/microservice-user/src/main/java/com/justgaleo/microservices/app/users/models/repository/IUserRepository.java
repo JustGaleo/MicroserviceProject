@@ -1,6 +1,7 @@
 package com.justgaleo.microservices.app.users.models.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -13,5 +14,8 @@ public interface IUserRepository extends CrudRepository<User, Long> {
 
 	@Query("select c from User c join fetch c.funkos a where a.id=?1")
 	public List<User> findUserByFunkoId(Long id);
+	
+	@Query("select c from User c where c.email=?1")
+	public Optional<User> findUserByEmail(String email);
 	
 }
