@@ -1,43 +1,31 @@
-package com.justgaleo.microservices.app.users.models.entity;
+package com.justgaleo.microservices.app.funko.models.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
-import com.justgaleo.microservices.app.funko.models.entity.Funko;
-
 @Entity
-@Table(name="users")
-public class User {
+@Table(name="funkos")
+public class Funko {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@NotEmpty
 	private String name;
 	
 	@NotEmpty
-	private String lastName;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	private List<Funko> funkos;
-	
-	@NotEmpty
-	private String email;
+	private String brand;
 	
 	@Column(name = "create_at")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -48,10 +36,6 @@ public class User {
 		this.createAt = new Date();
 	}
 	
-	public User() {
-		this.funkos = new ArrayList<>();
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -68,35 +52,12 @@ public class User {
 		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public List<Funko> getFunkos() {
-		return funkos;
-	}
-
-	public void setFunkos(List<Funko> funkos) {
-		this.funkos = funkos;
-	}
-	
-	public void addFunko(Funko funko) {
-		this.funkos.add(funko);
-	}
-	public void removeFunko(Funko funko) {
-		this.funkos.remove(funko);
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 
 	public Date getCreateAt() {
@@ -106,7 +67,6 @@ public class User {
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 
@@ -114,13 +74,15 @@ public class User {
 			return true;
 		}
 
-		if (!(obj instanceof User)) {
+		if (!(obj instanceof Funko)) {
 			return false;
 		}
 
-		User a = (User) obj;
+		Funko a = (Funko) obj;
 
 		return this.id != null && this.id.equals(a.getId());
 	}
+	
+	
 
 }

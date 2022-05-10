@@ -1,18 +1,12 @@
 package com.justgaleo.microservices.app.users.services;
 
-import java.util.Optional;
+import java.util.List;
 
 import com.justgaleo.microservices.app.users.models.entity.User;
+import com.justgaleo.microservices.commons.services.ICommonService;
 
-public interface IUserService {
-	
-	public Iterable<User> findAll();
-	
-	public Optional<User> findById(Long id);
-	
-	public User save(User user);
-	
-	public void deleteById(Long id);
-	
+public interface IUserService extends ICommonService<User>{
 
+	public List<User> findUserByFunkoId(Long id);
+	
 }
