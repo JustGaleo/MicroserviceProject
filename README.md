@@ -1,5 +1,5 @@
-# AngularSpringProject
-In this project I'm going to make microservices with Spring technologies like Eureka and ApiGateway. Also, I'm going to consume the microservices in Front with Angular
+# MicroserviceProject
+In this project I'm going to make microservices with Spring technologies like Eureka and ApiGateway.
 ## Spring
 When we are doing a Microservice there are important components:
 ### Entity
